@@ -9,11 +9,19 @@ class task:
         self.priority = priority #int
     
     def print_info(self):
-        print('number: ', self.number)
-        print('name:', self.name)
-        print('description:', self.description)
-        print('tags:', self.tags)
-        print('priority:', self.priority)
+        print('Number: ', self.number)
+        print('Title:', self.name)
+        print('Description:', self.description)
+        print('Tags:', self.tags)
+        print('Priority:', self.priority)
+        print('')
+    
+    def short_info(self):
+        print('Number: ', self.number)
+        print('Priority: ', self.priority )
+        print('Title: ', self.name)
+        print('Tags: ', self.tags)
+        print('')
 
 class user:
     def __init__(self, name, task_list=[], archive_list=[]):
@@ -23,7 +31,7 @@ class user:
     
     def print_tasks(self):
         for task in self.task_list:
-            task.print_info()
+            task.short_info()
     
     def print_archive(self):
         for task in self.archive_list:

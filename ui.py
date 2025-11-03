@@ -17,6 +17,7 @@ returns: None
 """
 def welcome(user):
     print("Welcome to Task Manager (selfmade edition)!")
+    print('')
     # still coming up with something better, details are a wip here
 
     while True:
@@ -33,7 +34,7 @@ def welcome(user):
         elif nav == '2':
             # take user to help page (call help function)
             print("Loading help page...")
-            help()
+            help(user)
             break
         
         else:
@@ -41,15 +42,15 @@ def welcome(user):
             print("Unknown Option, please retry")
 
 """
-help()
+help(user)
 
 This function operates the help page, which essentially just prints help information.
 The user can navigate back to the welcome page.
 
-parameters: None
+parameters: user - user object (from task_object.py)
 returns: None
 """
-def help():
+def help(user):
     # Prints help information for help page
     print("This software allows you to make a customizable to-do list with tagged tasks and an archive. \n" \
     "Use task tags to improve your organization and categorize your tasks, and use \n" \
@@ -63,7 +64,7 @@ def help():
 
         if nav == '1':
             # return home
-            welcome()
+            welcome(user)
             break
 
         else:
@@ -82,6 +83,7 @@ returns: None
 """
 def task_view(user):
     # if the tasks exist, print them
+    print('')
     if user.task_list:
         user.print_tasks()
         while True:
@@ -106,17 +108,17 @@ def task_view(user):
                         break
                 
                     else: 
-                        print('unknown option. try again?')
+                        print('Unknown option. Try again?')
         
             elif sort == 'n':
                 break
 
             else:
-                print('unknown option. try again? ')
+                print('Unknown option. Try again? ')
 
     # if not, asks user to add tasks. 
     else:
-        print('no tasks here. enter add to add a task!')
+        print('No tasks here. Input add to add a task!')
     # call nav
     page_nav(user)
 
@@ -180,16 +182,16 @@ def add_task(user):
     
     # make a new task with all the information user provided
     new_task = task.task(name, number, description, tag_list, int(priority))
-
+    print('')
     new_task.print_info()
 
     # allows user to check if all their inputs were correct
     while True:
-        check = input('Is all information correct? (y/n):')
+        check = input('Is all information correct? (y/n): ')
         
         # save task to user's task list
         if check == 'y':
-            print('great! saving task...')
+            print('Great! Saving task...')
             user.task_list.append(new_task)
             task_view(user)
             break
@@ -201,7 +203,7 @@ def add_task(user):
             break
         
         else:
-            print('try again')
+            print('Unknown option. Try again?')
 
     # call nav
     page_nav(user)
@@ -264,7 +266,7 @@ def this_task(user, index):
             break
 
         else:
-            print('unknown option. try again?')
+            print('Unknown option. Try again?')
     # call nav
     page_nav(user)
 
@@ -419,7 +421,7 @@ def filter_by_tag(user):
             break
         # or check all tasks before breaking
         else:
-            print('input is not a tag. retry?')
+            print('Input is not a current tag. Retry?')
 
 """
 page_nav(user)
@@ -460,7 +462,7 @@ def page_nav(user):
         elif nav == 'h':
             print("Loading Help...")
             time.sleep(1)
-            help()
+            help(user)
             break
         
         # see archived tasks
